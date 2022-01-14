@@ -3,6 +3,8 @@
 namespace Config;
 
 // Create a new instance of our RouteCollection class.
+use App\Controllers\KategoriProdukController;
+
 $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
@@ -32,6 +34,13 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+$routes->get('/kategori_produk','KategoriProdukController::index',['as'=>'kategori_produk.index']);
+$routes->get('/kategori_produk/create','KategoriProdukController::create',['as'=>'kategori_produk.create']);
+$routes->post('/kategori_produk/store','KategoriProdukController::store',['as'=>'kategori_produk.store']);
+$routes->get('/kategori_produk/(:num)','KategoriProdukController::edit/$1',['as'=>'kategori_produk.edit']);
+$routes->patch('/kategori_produk/(:num)','KategoriProdukController::update/$1',['as'=>'kategori_produk.update']);
+$routes->get('/kategori_produk/delete/(:num)','KategoriProdukController::destroy/$1',['as'=>'kategori_produk.delete']);
 
 /*
  * --------------------------------------------------------------------
